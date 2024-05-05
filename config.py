@@ -30,3 +30,6 @@ moment = Moment(app)
 app.config.from_object('config')
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 db = SQLAlchemy(app)
+
+
+
