@@ -3,7 +3,7 @@ from flask import request, jsonify
 from config import app
 from service import get_average_value, get_row_count, average_value_by_day, calculate_avg_value_by_season, \
     count_days_with_max_hour, get_obs_count, avg_value_by_state, avg_value_by_county, get_concern_levels_info, \
-    get_pollution_elements_info
+    get_pollution_elements_info, get_distribution_by_year
 
 
 def get_request_parameters():
@@ -134,12 +134,20 @@ def air_quality_comparison():
     return jsonify(average_values)
 
 
+@app.route('/avg_by_year', methods=['GET'])
+def avg_by_year():
+    element, year, _, state, county = get_request_parameters()
+    average_values = get_distribution_by_year(element, state, county)
+
+    if average_values is None:
+        return jsonify({'error': 'Invalid element or no data found'}), 400
+
+    return jsonify(average_values)
+
+
 # ----------------------------------------------------------------------------#
 # Launch.
 # ----------------------------------------------------------------------------#
-
-# Default port:
-from config import app
 
 if __name__ == '__main__':
     app.run()

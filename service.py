@@ -14,7 +14,7 @@ def get_table(element):
         'NO2': NO2,
         'Ozone': Ozone,
         'PM10': PM10,
-        'PM25': PM25,
+        'PM2.5': PM25,
         'SO2': SO2
     }.get(element)
 
@@ -27,8 +27,9 @@ def get_column_By_Attribute(pollutant_model, attribute):
     return getattr(pollutant_model, attribute)
 
 
-def filter_by_date_state_county(query, pollutant_model, month, year, state=None, county=None):
-    query = query.filter(
+def filter_by_date_state_county(query, pollutant_model, month=None, year=None, state=None, county=None):
+    if year:
+        query = query.filter(
         func.extract('year', pollutant_model.date_local) == year,
     )
 
@@ -250,6 +251,24 @@ def get_concern_levels_info(element, year, month, state, county):
     results = query.all()
 
     table_format = [{'name': category, 'value': count} for category, count in results if count !=0]
+
+    return table_format
+
+
+def get_distribution_by_year(element, state, county):
+    pollutant_model = get_table(element)
+    if not pollutant_model:
+        return None
+
+    column = get_column(pollutant_model, element)
+    query = filter_by_date_state_county(pollutant_model.query, pollutant_model, state=state, county=county)
+    date_column = pollutant_model.date_local
+    query = query.with_entities(func.extract('year', date_column), func.avg(column).label('count'))\
+        .group_by(func.extract('year', date_column))
+    print(str(query))
+
+    results = query.all()
+    table_format = [{'name': category, 'value': count} for category, count in results if count != 0]
 
     return table_format
 
