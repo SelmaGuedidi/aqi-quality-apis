@@ -1,20 +1,12 @@
 version: 0.2
-env:
-  variables:
-    RDS_HOST: `#{variables.RDS_HOST}`
-    RDS_DB_NAME: `#{variables.RDS_DB_NAME}`
-    RDS_USER: `#{variables.RDS_USER}`
-    RDS_PASSWORD: `#{variables.RDS_PASSWORD}`
+
 phases:
   install:
     runtime-versions:
       python: 3.8
     commands:
       - pip install -r requirements.txt
-  pre_build:
-    commands:
-      - echo `#{variables.RDS_DB_NAME}`
-  build:
+ 
     commands:
       - python -m pytest --junitxml=tests/test-report tests/tests.py
 reports:
