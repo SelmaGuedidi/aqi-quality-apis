@@ -26,7 +26,7 @@ def average_value():
 
     average = get_average_value(element, year, month, state, county)
     if average is None:
-        return jsonify({'error': 'Invalid parameters or data not found'}), 400
+        return jsonify({'error': 'Invalid element or no data found'}), 400
 
     return jsonify({'average_value': average}), 200
 
@@ -38,7 +38,7 @@ def get_row_count_api():
     row_count = get_row_count(element, year, month, state, county)
 
     if row_count is None:
-        return jsonify({'error': 'Invalid element'}), 400
+        return jsonify({'error': 'Invalid element or no data found'}), 400
 
     return jsonify({'count': row_count})
 
@@ -50,7 +50,7 @@ def get_obs_count_api():
     row_count = get_obs_count(element, year, month, state, county)
 
     if row_count is None:
-        return jsonify({'error': 'Invalid element'}), 400
+        return jsonify({'error': 'Invalid element or no data found'}), 400
 
     return jsonify({'count': row_count})
 
