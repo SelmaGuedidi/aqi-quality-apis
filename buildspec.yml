@@ -6,8 +6,6 @@ phases:
       python: 3.8
     commands:
       - pip install -r requirements.txt
- 
-    commands:
       - python -m pytest --junitxml=tests/test-report tests/tests.py
 reports:
   pytest_reports:
