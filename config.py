@@ -5,7 +5,6 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
-
 DB_HOST = os.environ.get('RDS_HOST')
 DB_USER = os.environ.get('RDS_USER')
 DB_PASSWORD = os.environ.get('RDS_PASSWORD')
