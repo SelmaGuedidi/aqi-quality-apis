@@ -14,7 +14,7 @@ phases:
     commands:
       - pip install -r requirements.txt
 
-  pre-build:
+  pre_build:
     commands:
       - echo $RDS_DB_NAME
 
