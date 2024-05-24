@@ -1,9 +1,10 @@
 version: 0.2
 
 env:
+  variable:
+    RDS_DB_NAME: air_quality
   secrets-manager:
     RDS_HOST: RDS_CREDS:host
-    RDS_DB_NAME: RDS_CREDS:dbname
     RDS_USER: RDS_CREDS:user
     RDS_PASSWORD: RDS_CREDS:password
 
