@@ -3,10 +3,10 @@ version: 0.2
 
 env:
   variables:
-    RDS_HOST: ${variables.RDS_HOST}
-    RDS_DB_NAME: ${variables.RDS_DB_NAME}
-    RDS_USER: ${variables.RDS_USER}
-    RDS_PASSWORD: ${variables.RDS_PASSWORD}
+    RDS_HOST: $RDS_HOST
+    RDS_DB_NAME: $RDS_DB_NAME
+    RDS_USER: $RDS_USER
+    RDS_PASSWORD: $RDS_PASSWORD
 
 phases:
   install:
