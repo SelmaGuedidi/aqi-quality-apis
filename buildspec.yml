@@ -1,20 +1,11 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
       python: 3.8
     commands:
       - pip install -r requirements.txt
-
-  pre_build:
-    commands:
-      - echo $RDS_DB_NAME
-
-  build:
-    commands:
       - python -m pytest --junitxml=tests/test-report tests/tests.py
-
 reports:
   pytest_reports:
     files:
