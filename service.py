@@ -1,3 +1,5 @@
+from operator import itemgetter
+
 from sqlalchemy import func, and_
 
 from models.AQI import AQI
@@ -269,6 +271,7 @@ def get_distribution_by_year(element, state, county):
 
     results = query.all()
     table_format = [{'name': category, 'value': count} for category, count in results if count != 0]
+    table_format = sorted(table_format, key=itemgetter('name'))
 
     return table_format
 
