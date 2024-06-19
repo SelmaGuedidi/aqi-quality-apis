@@ -24,7 +24,7 @@ DEBUG = True
 # ----------------------------------------------------------------------------#
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://aqi-dashboard.s3-website.us-east-2.amazonaws.com/"}})
+CORS(app, resources={r"/*": {"origins": "http://aqi-dashboard.s3-website.us-east-2.amazonaws.com"}})
 moment = Moment(app)
 app.config.from_object('config')
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
